@@ -1,6 +1,8 @@
 Data collected from Basketball Reference, many variables are thus described based on [Basketball Reference Glossary](https://www.basketball-reference.com/about/glossary.html)
 
-The data was scraped 2/18/22 by us, and was input into Basketball Reference. Basketball Reference is partnered with SportRadar (the official statistics provider of the NBA), in providing the official NBA data for current-season data$^1$. It is well known for being thorough and accurate,
+The initial data was scraped 3/18/22 by me, and was input into Basketball Reference. Basketball Reference is partnered with SportRadar (the official statistics provider of the NBA), in providing the official NBA data for current-season data$^1$. It is well known for being thorough and accurate.
+
+The 2022 data was scraped 5/03/22 (after the regular season ended but before the playoffs ended).
 
 ## Data Dictionary
 
