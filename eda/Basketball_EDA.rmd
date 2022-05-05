@@ -1,0 +1,170 @@
+---
+title: "NBA Exploratory Data Analysis"
+author: "Frankie Willard"
+output: pdf_document
+---
+
+```{r load-package}
+#| warning: false
+#| echo: false
+#| message: false
+
+library(tidyverse)
+library(knitr)
+library(gridExtra)
+library(broom)
+library(ggplotify)
+
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE)
+#knitr::opts_chunk$set(fig.width=4.5, fig.height=3)
+
+```
+
+```{r load-data}
+
+nba <- read_csv("/Users/frankiewillard/Downloads/nba_team_advanced_data.csv")
+
+```
+
+```{r initial-bar}
+
+ggplot(data = nba, aes(x = Champion)) + 
+  geom_bar() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
+  labs(x = "Championship Status", title = "Distribution of Champions")
+
+```
+
+
+```{r won-last-bar}
+
+
+nba_won_last <- nba %>% 
+  filter(won_last == "Y")
+nba_won_last_3 <- nba %>% 
+  filter(won_last_3 == "Y")
+
+
+bar1 <- ggplot(data = nba, aes(x = Champion)) + 
+  geom_bar() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
+  labs(
+    title = "Previous Champions
+    Performance
+    (last year)", 
+    x = "Championship Status",
+    y = "Count")
+
+
+bar2 <- ggplot(data = nba, aes(x = Champion)) + 
+  geom_bar() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
+  labs(
+    title = "Previous Champions
+    Performance
+    (last 3 years)", 
+    x = "Championship Status",
+    y = "Count")
+
+grid.arrange(bar1, bar2, nrow = 1)
+
+
+```
+
+
+
+```{r won-last-relative-bar}
+
+rel_bar1 <- ggplot(data = nba, aes(x = Champion, fill = won_last)) + 
+  geom_bar(position = "fill") + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
+  labs(
+    title = "Previous Champions
+    Performance
+    (last year)", 
+    x = "Championship Status",
+    y = "Count")
+
+rel_bar2 <- ggplot(data = nba, aes(x = Champion, fill = won_last_3)) + 
+  geom_bar(position = "fill") + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
+  labs(
+    title = "Previous Champions
+    Performance
+    (last 3 years)", 
+    x = "Championship Status",
+    y = "Count")
+
+grid.arrange(rel_bar1, rel_bar2, nrow = 1)
+
+```
+
+```{r box-plots}
+
+box1 <- ggplot(data = nba, aes(x = Champion, y = W)) + 
+  geom_boxplot() + 
+  labs(x = "Championship Status", y = "Wins", title = "Wins by
+       Champion")
+
+box2 <- ggplot(data = nba, aes(x = Champion, y = NRtg)) + 
+  geom_boxplot() + 
+  labs(x = "Championship Status", y = "Net Rating", title = "Net Rating by
+       Champion")
+# Cut 
+box3 <- ggplot(data = nba, aes(x = Champion, y = SRS)) + 
+  geom_boxplot() + 
+  labs(x = "Championship Status", y = "SRS", title = "SRS by
+       Champion")
+
+box4 <- ggplot(data = nba, aes(x = Champion, y = `Age`)) + 
+  geom_boxplot() + 
+  labs(x = "Championship Status", y = "Age", title = "Age by
+       Champion")  
+box5 <- ggplot(data = nba, aes(x = Champion, y = `DeFG%`)) + 
+  geom_boxplot() + 
+  labs(x = "Championship Status", y = "Defensive Effective FG%", title = "Defensive Effective
+        FG% by
+       Champion")  
+box6 <- ggplot(data = nba, aes(x = Champion, y = `MOV`)) + 
+  geom_boxplot() + 
+  labs(x = "Championship Status", y = "Margin of Victory", title = "Margin of Victory
+       by Champion")
+grid.arrange(box1, box2, box3, box4, box5, box6, nrow = 3)
+```
+
+
+
+```{r spine-plots}
+
+nba <- nba %>% 
+  mutate(Champion = as.factor(nba$Champion))
+
+spine1 <- spineplot(nba$Champion~nba$`W/L%`, ylevels = c("Y", "N"), main="Spine
+                    plot of Win Percentage and Championship Status",
+                    xlab = "Win Percentage", ylab = "Championship Status")
+spine2 <- spineplot(nba$Champion~nba$`NRtg`, ylevels = c("Y", "N"), main="Spine
+                    plot of Net Rating and Championship Status",
+                    xlab = "Net Rating", ylab = "Championship Status")
+spine3 <- spineplot(nba$Champion~nba$`SRS`, ylevels = c("Y", "N"), main="Spine
+                    plot of SRS and Championship Status",
+                    xlab = "SRS", ylab = "Championship Status")
+spine4 <- spineplot(nba$Champion~nba$`Age`, ylevels = c("Y", "N"), main="Spine
+                    plot of Age and Championship Status",
+                    xlab = "Age", ylab = "Championship Status")
+spine5 <- spineplot(nba$Champion~nba$`DeFG%`, ylevels = c("Y", "N"), main=
+                      "Spine plot of Defensive Effective Field Goal Percentage
+                    and Championship Status",
+                    xlab = "Defensive Effective Field Goal Percentage",
+                    ylab = "Championship Status")
+spine6 <- spineplot(nba$Champion~nba$`MOV`, ylevels = c("Y", "N"), main="Spine plot of Margin of Victory and Championship Status",
+                    xlab = "Margin of Victory", ylab = "Championship Status")
+
+
+spine1
+spine2
+spine3
+spine4
+spine5
+spine6
+
+```
