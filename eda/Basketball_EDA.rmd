@@ -4,10 +4,7 @@ author: "Frankie Willard"
 output: pdf_document
 ---
 
-```{r load-package}
-#| warning: false
-#| echo: false
-#| message: false
+```{r load-package, warning = FALSE, echo = FALSE, message = FALSE}
 
 library(tidyverse)
 library(knitr)
@@ -16,7 +13,7 @@ library(broom)
 library(ggplotify)
 
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE)
-#knitr::opts_chunk$set(fig.width=4.5, fig.height=3)
+knitr::opts_chunk$set(fig.width=6, fig.height=4)
 
 ```
 
@@ -25,6 +22,8 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = FALSE)
 nba <- read_csv("/Users/frankiewillard/Downloads/nba_team_advanced_data.csv")
 
 ```
+
+## Visualizing the Distribution of the Response Variable
 
 ```{r initial-bar}
 
@@ -35,17 +34,21 @@ ggplot(data = nba, aes(x = Champion)) +
 
 ```
 
+As shown above, only a small proportion of the dataset is a Champion. This is because in the NBA, there is only one champion out of thirty teams in a year. This will create a class imbalance in our dataset.
+
+## Visualizing the Relationship Between Discrete Variables and the Response Variable
 
 ```{r won-last-bar}
 
 
 nba_won_last <- nba %>% 
   filter(won_last == "Y")
+
 nba_won_last_3 <- nba %>% 
   filter(won_last_3 == "Y")
 
 
-bar1 <- ggplot(data = nba, aes(x = Champion)) + 
+bar1 <- ggplot(data = nba_won_last, aes(x = Champion)) + 
   geom_bar() + 
   scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(
@@ -56,7 +59,7 @@ bar1 <- ggplot(data = nba, aes(x = Champion)) +
     y = "Count")
 
 
-bar2 <- ggplot(data = nba, aes(x = Champion)) + 
+bar2 <- ggplot(data = nba_won_last_3, aes(x = Champion)) + 
   geom_bar() + 
   scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(
@@ -71,9 +74,14 @@ grid.arrange(bar1, bar2, nrow = 1)
 
 ```
 
+The first bar plot shows the distribution of Champions among teams that won in the previous year. This shows that of teams that won in the previous year, approximately 1/3 of them won the next year. 
+
+The second bar plot shows the distribution of Champions among teams that won in the previous 3 years. This shows that of teams that won in the previous 3 years in a given year, approximately 1/5 of them won the championship. 
+
+These both are clearly impactful variables to explore further. 
 
 
-```{r won-last-relative-bar}
+```{r won-last-relative-bar, fig.width=7}
 
 rel_bar1 <- ggplot(data = nba, aes(x = Champion, fill = won_last)) + 
   geom_bar(position = "fill") + 
@@ -99,42 +107,95 @@ grid.arrange(rel_bar1, rel_bar2, nrow = 1)
 
 ```
 
-```{r box-plots}
+The first relative bar plot shows that of teams that won the championship in a given year, approximately 35% of those teams had won in the year before. 
+
+The second relative bar plot shows that of teams that won the championship in a given year, 
+approximately 50% of those teams had won in one of the previous 3 years before. 
+
+## Visualizing the Relationship Between Continuous Variables and the Response Variable
+
+
+```{r box-plots, fig.height=6}
 
 box1 <- ggplot(data = nba, aes(x = Champion, y = W)) + 
   geom_boxplot() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(x = "Championship Status", y = "Wins", title = "Wins by
        Champion")
 
 box2 <- ggplot(data = nba, aes(x = Champion, y = NRtg)) + 
   geom_boxplot() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(x = "Championship Status", y = "Net Rating", title = "Net Rating by
        Champion")
 # Cut 
 box3 <- ggplot(data = nba, aes(x = Champion, y = SRS)) + 
   geom_boxplot() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(x = "Championship Status", y = "SRS", title = "SRS by
        Champion")
 
 box4 <- ggplot(data = nba, aes(x = Champion, y = `Age`)) + 
   geom_boxplot() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(x = "Championship Status", y = "Age", title = "Age by
        Champion")  
 box5 <- ggplot(data = nba, aes(x = Champion, y = `DeFG%`)) + 
   geom_boxplot() + 
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(x = "Championship Status", y = "Defensive Effective FG%", title = "Defensive Effective
         FG% by
        Champion")  
 box6 <- ggplot(data = nba, aes(x = Champion, y = `MOV`)) + 
-  geom_boxplot() + 
+  geom_boxplot() +
+  scale_x_discrete(labels = c("Y" = "Champion", "N" = "Not Champion")) +
   labs(x = "Championship Status", y = "Margin of Victory", title = "Margin of Victory
        by Champion")
 grid.arrange(box1, box2, box3, box4, box5, box6, nrow = 3)
 ```
 
+The box plots above show several variables that I found intriguing through exploratory data analysis. This is demonstrated by the difference in location of the boxes, their medians, and their sizes between champions and non-champions. We find that the margin of victory, SRS, and win variables to be especially noteworthy (although the other variables visually appear significant). In the appendix is a visualization of these same variables in spine plots.
+
+## Visualizing the Collinearity of the Predictor Variables
+
+```{r scatter-plots}
 
 
-```{r spine-plots}
+scatter1 <- ggplot(data = nba, aes(x = SRS, y = `MOV`)) + 
+  geom_point() + 
+  labs(x = "SRS", y = "MOV", title = "MOV by
+       SRS") 
+
+scatter2 <- ggplot(data = nba, aes(x = ORtg, y = `OeFG%`)) + 
+  geom_point() + 
+  labs(x = "Offensive Rating", y = "Offensive Effective Field Goal Percentage",
+  title = "OeFG% by Offensive Rating") 
+
+scatter3 <- ggplot(data = nba, aes(x = DRtg, y = `DeFG%`)) + 
+  geom_point() + 
+  labs(x = "Defensive Rating", y = "Defensive Effective Field Goal Percentage",
+  title = "DeFG% by Defensive Rating") 
+
+scatter4 <- ggplot(data = nba, aes(x = W, y = `PW`)) + 
+  geom_point() + 
+  labs(x = "Wins", y = "Pythagorean Wins", title = "Pythagoreans Wins by
+       Wins") 
+
+
+grid.arrange(scatter1, scatter2, scatter3, scatter4, nrow = 2)
+
+
+```
+
+By the nature of some advanced stats, some of the variables are inherently collinear, such as MOV and SRS as SRS uses MOV in its calculation (and the same thing for Pythagorean Wins and Wins). 
+
+Additionally, offensive predictors will likely have collinearity with each other as well as defensive predictors, although this collinearity is not as strong as the aforementioned predictors.
+
+Identifying potential sources of collinearity is crucial for variable selection and feature engineering, as we hope to add only important predictors to our final model in  order to reduce sources of variance such as the curse of dimensionality, as a more parsimonious model with similar bias will have less variance.
+
+## Appendix
+
+```{r spine-plots, fig.height=4, fig.height=3}
 
 nba <- nba %>% 
   mutate(Champion = as.factor(nba$Champion))
@@ -159,12 +220,6 @@ spine5 <- spineplot(nba$Champion~nba$`DeFG%`, ylevels = c("Y", "N"), main=
 spine6 <- spineplot(nba$Champion~nba$`MOV`, ylevels = c("Y", "N"), main="Spine plot of Margin of Victory and Championship Status",
                     xlab = "Margin of Victory", ylab = "Championship Status")
 
-
-spine1
-spine2
-spine3
-spine4
-spine5
-spine6
-
 ```
+
+Here are six spine plots of six key variables identified in the visualization of continous variables and our response variable.
