@@ -18,6 +18,7 @@ A further explanation of the variables collected in the dataset can be found in 
 Exploratory data analysis of the dataset can be found in the eda folder, featuring various plots of variables in the dataset in R. 
 
 [Link To EDA Code](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/eda/Basketball_EDA.rmd)
+
 [Link to PDF of Visualizations](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/eda/Basketball_EDA.pdf)
 
 <br/>
