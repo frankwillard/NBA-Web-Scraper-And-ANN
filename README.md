@@ -28,6 +28,8 @@ Exploratory data analysis of the dataset can be found in the eda folder, featuri
 
 Using an Artificial Neural Network in TensorFlow with Batch Normalization, Dropout, and several class imbalance techniques including oversampling, we then developed a model using the training data and predicted on the 2022 testing data. 
 
+Early stopping was used in order to reduce the possibility of overfitting and use the weights that produce the optimal validation PR curve, or rather combination of precision (how many predictions were truely Champion) and recall (how many Champions were identified by model). 
+
 The model predicts the Miami Heat, Phoenix Suns, Milwaukee Bucks, and Golden State Warriors as the most likely teams to win the 2022 championship (output score from ANN > 0.5), with the Suns having the highest probability score, such that they are the model's predicted champion. 
 
 The visualizations and class imbalance techniques used in the ANN Notebook are based on the [TensorFlow Core Tutorial on Working with Class Imbalance](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data)
