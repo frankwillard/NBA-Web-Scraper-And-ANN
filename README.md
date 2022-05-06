@@ -30,7 +30,7 @@ Using an Artificial Neural Network in TensorFlow with Batch Normalization, Dropo
 
 Early stopping was used in order to reduce the possibility of overfitting and use the weights that produce the optimal validation PR curve, or rather combination of precision (how many predictions were truely Champion) and recall (how many Champions were identified by model). 
 
-The model predicts the Miami Heat, Phoenix Suns, Milwaukee Bucks, and Golden State Warriors as the most likely teams to win the 2022 championship (output score from ANN > 0.5), with the Suns having the highest probability score, such that they are the model's predicted champion. 
+The model predicts the Phoenix Suns, Golden State Warriors, and Miami Heat as the most likely teams to win the 2022 championship (highest output scores from ANN), with the Suns having the highest probability score, such that they are the model's predicted champion. 
 
 The visualizations and class imbalance techniques used in the ANN Notebook are based on the [TensorFlow Core Tutorial on Working with Class Imbalance](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data)
 
