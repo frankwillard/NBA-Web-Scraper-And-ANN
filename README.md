@@ -11,6 +11,8 @@ https://www.basketball-reference.com/leagues/NBA_{year}.html (Example: https://w
 
 A testing dataset was then collected using data from the NBA 2022 regular season. 
 
+In scraping the dataset, several variables were feature engineered from the Basketball Reference data including won_last and won_last_3 (lag features of previous championships in the last 1 and 3 years respectively), Win Loss Percentage (as several seasons varied in length due to lockout such that it is a better predictor of regular season performance)
+
 A further explanation of the variables collected in the dataset can be found in the [Data Dictionary](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/data/Data%20Dictionary.md).
 
 <br/>
