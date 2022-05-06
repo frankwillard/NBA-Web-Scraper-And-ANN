@@ -1,5 +1,7 @@
 # Basketball-Advanced-Stats-Web-Scraper
 
+<br/>
+
 ## Part 1) Web Scraping
 
 Web scraper developed by adapting scripts from [Medium Basketball Reference Article](https://medium.com/analytics-vidhya/intro-to-scraping-basketball-reference-data-8adcaa79664a) based on knowledge of Python, pandas, web scraping. 
