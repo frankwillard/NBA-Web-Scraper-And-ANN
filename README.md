@@ -24,12 +24,12 @@ Exploratory data analysis of the dataset can be found in the eda folder, featuri
 
 ## Part 3) Data Cleaning, Modeling, and Prediction
 
-Approach 1: Artificial Neural Network
+### Approach 1: Artificial Neural Network
 
 Using an Artificial Neural Network in TensorFlow with Batch Normalization, Dropout, and several class imbalance techniques including oversampling, we then developed a model using the training data and predicted on the 2022 testing data. The model predicts the Miami Heat, Phoenix Suns, and Golden State Warriors as the most likely teams to win the 2022 championship (probability of winning > 0.5), with the Heat having the highest probability, such that they are the model's predicted champion. 
 
 The visualizations and class imbalance techniques used in the ANN Notebook are based on the [TensorFlow Core Tutorial on Working with Class Imbalance](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data)
 
-Approach 2: Decision Tree
+### Approach 2: Decision Tree
 
 Decision Trees are known to be effective at dealing with imbalanced data. Thus, after optimizing the hyperparameters of a decision tree, a decision tree was used to predict on the 2022 testing data. The model predicts the Phoenix Suns to win the championship.
