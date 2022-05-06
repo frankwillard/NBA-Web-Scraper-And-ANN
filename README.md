@@ -9,11 +9,15 @@ https://www.basketball-reference.com/leagues/NBA_{year}.html (Example: https://w
 
 A testing dataset was then collected using data from the NBA 2022 regular season. 
 
-A further explanation of the variables collected in the dataset can be found in the Data Dictionary.
+A further explanation of the variables collected in the dataset can be found in the [Data Dictionary](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/data/Data%20Dictionary.md).
 
 ## Part 2) Exploratory Data Analysis
 
 Exploratory data analysis of the dataset can be found in the eda folder, featuring various plots of variables in the dataset in R. 
+
+[Link To EDA Code](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/eda/Basketball_EDA.rmd)
+[Link to PDF of Visualizations](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/eda/Basketball_EDA.pdf)
+
 
 ## Part 3) Data Cleaning, Modeling, and Prediction
 
