@@ -2,8 +2,6 @@
 
 ## Part 1) Web Scraping
 
-
-
 Web scraper developed by adapting scripts from [Medium Basketball Reference Article](https://medium.com/analytics-vidhya/intro-to-scraping-basketball-reference-data-8adcaa79664a) based on knowledge of Python, pandas, web scraping. 
 
 Pulled Advanced Basketball Stats from years 1990-2020 from links in format:
@@ -13,7 +11,7 @@ A testing dataset was then collected using data from the NBA 2022 regular season
 
 A further explanation of the variables collected in the dataset can be found in the [Data Dictionary](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/data/Data%20Dictionary.md).
 
-
+<br/>
 
 ## Part 2) Exploratory Data Analysis
 
@@ -22,7 +20,7 @@ Exploratory data analysis of the dataset can be found in the eda folder, featuri
 [Link To EDA Code](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/eda/Basketball_EDA.rmd)
 [Link to PDF of Visualizations](https://github.com/frankwillard/NBA-Web-Scraper-And-ANN/blob/main/eda/Basketball_EDA.pdf)
 
-
+<br/>
 
 ## Part 3) Data Cleaning, Modeling, and Prediction
 
