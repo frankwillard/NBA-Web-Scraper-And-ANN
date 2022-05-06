@@ -34,6 +34,8 @@ The model predicts the Miami Heat, Phoenix Suns, Milwaukee Bucks, and Golden Sta
 
 The visualizations and class imbalance techniques used in the ANN Notebook are based on the [TensorFlow Core Tutorial on Working with Class Imbalance](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data)
 
+<br/>
+
 ### Approach 2: Decision Tree
 
 Decision Trees are known to be effective at dealing with imbalanced data. Thus, after optimizing the hyperparameters of a decision tree, a decision tree was used to predict on the 2022 testing data. The model predicts the Phoenix Suns to win the championship.
