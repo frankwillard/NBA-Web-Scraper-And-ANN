@@ -1,5 +1,7 @@
 # Basketball-Advanced-Stats-Web-Scraper
 
+This is my attempt at using my machine learning skill set to predict the 2022 Champion. All work was done before the playoffs to ensure an unbiased prediction.
+
 <br/>
 
 ## Part 1) Web Scraping
@@ -29,13 +31,15 @@ Exploratory data analysis of the dataset can be found in the eda folder, featuri
 
 ## Part 3) Data Cleaning, Modeling, and Prediction
 
+All teams that did not make the playoffs were not included in the model in order to prioritize differentiating top-level teams from each other.
+
 ### Approach 1: Artificial Neural Network
 
 Using an Artificial Neural Network in TensorFlow with Batch Normalization, Dropout, and several class imbalance techniques including oversampling, we then developed a model using the training data and predicted on the 2022 testing data. 
 
 Early stopping was used in order to reduce the possibility of overfitting and use the weights that produce the optimal validation PR curve, or rather combination of precision (how many predictions were truely Champion) and recall (how many Champions were identified by model). 
 
-The model predicts the Phoenix Suns, Golden State Warriors, and Miami Heat as the most likely teams to win the 2022 championship (highest output scores from ANN), with the Suns having the highest probability score, such that they are the model's predicted champion. 
+The model predicts the Phoenix Suns and the Golden State Warriors as the likely teams to win the 2022 championship (highest output scores from ANN), with the Suns having the highest log-odds, such that they are the model's predicted champion. 
 
 The visualizations and class imbalance techniques used in the ANN Notebook are based on the [TensorFlow Core Tutorial on Working with Class Imbalance](https://www.tensorflow.org/tutorials/structured_data/imbalanced_data)
 
